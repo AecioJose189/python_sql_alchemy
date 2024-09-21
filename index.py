@@ -35,6 +35,16 @@ class Livro(Base):
 Base.metadata.create_all(bind=db)
 
 #O FAMOSO CRUD, CREATE, READ, UPDATE, DELETE
+#CREATE
 usuario = Usuario(nome="Aécio",email="aeciojunior45@gmail.com",senha="123123")
 session.add(usuario)
+session.commit()
+
+#READ
+# lista_usuarios = session.query(Usuario).all()
+usuario_lira = session.query(Usuario).filter_by(email="aeciojunior45@gmail.com").first()
+print(usuario_lira.nome)
+
+livro = Livro(titulo="teste", qnt_paginas="200", dono="junior")
+session.add(livro)
 session.commit()
