@@ -11,16 +11,25 @@ Base = declarative_base()
 #Usuarios
 class Usuario(Base):
     __tablename__ = "usuarios"
-    id = Column("id", Integer)
+    id = Column("id", Integer, primary_key=True, autoincrement=True)
     nome = Column("nome", String)
     email = Column("email", String)
     senha = Column("senha", String)
     ativo = Column("ativo", Boolean)
+    def __init__(self, id, nome, email, senha, ativo=True):
+        self.nome = nome
+        self.email = email
+        self.senha = senha
+        self.ativo = ativo
 #Livros
 class Livro(Base):
-    id = Column("id", Integer)
+    __tablename__="livros"
+    id = Column("id", Integer, primary_key=True, autoincrement=True)
     titulo = Column("titulo", String)
     qnt_paginas = Column("qnt_paginas", Integer)
     dono = Column("dono", ForeignKey("usuarios.id"))
-
+    def __init__(self, titulo, qnt_paginas, dono):
+        self.titulo = titulo
+        self.qnt_paginas = qnt_paginas
+        self.dono = dono
 Base.metadata.create_all(bind=db)
