@@ -16,7 +16,7 @@ class Usuario(Base):
     email = Column("email", String)
     senha = Column("senha", String)
     ativo = Column("ativo", Boolean)
-    def __init__(self, id, nome, email, senha, ativo=True):
+    def __init__(self, nome, email, senha, ativo=True):
         self.nome = nome
         self.email = email
         self.senha = senha
@@ -33,3 +33,8 @@ class Livro(Base):
         self.qnt_paginas = qnt_paginas
         self.dono = dono
 Base.metadata.create_all(bind=db)
+
+#O FAMOSO CRUD, CREATE, READ, UPDATE, DELETE
+usuario = Usuario(nome="Aécio",email="aeciojunior45@gmail.com",senha="123123")
+session.add(usuario)
+session.commit()
